@@ -8,7 +8,23 @@
         "tag":"create_note",
         "patterns":["Please create a new note", "New note", "Create a note", "I want to create a note"],
         "responses":[""]
-    },{
+    },
+    {
+        "tag":"show_notes",
+        "patterns":["Please show my notes", "Show notes"],
+        "responses":[""]
+    },
+    {
+        "tag":"create_todo",
+        "patterns":["Please create a new to do", "New to do", "Create a to do", "I want to create a to do"],
+        "responses":[""]
+    },
+    {
+        "tag":"show_todo",
+        "patterns":["Please show my to do's", "Show to do's"],
+        "responses":[""]
+    },
+    {
         "tag": "exit",
         "patterns":["Bye", "Stop", "Quit", "I want to quit", "Goodbye", "I want to exit", "I have to go"],
         "responses":[""]
