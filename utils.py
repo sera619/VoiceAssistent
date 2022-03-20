@@ -1,8 +1,6 @@
-from atexit import register
 import os
 from time import time, sleep
 from termcolor import *
-from datetime import *
 import json
 
 class BColors:
@@ -53,12 +51,11 @@ COPYRIGHT = (rf"""
 
 INITMENU =(rf"""
            
-        SAM hat festgestellt das du noch keine Konfiguration 
-          durchgeführt hast. Starte bitte den Assistenten.
-
+            SAM hat festgestellt das du noch keine Konfiguration hast.
+                Dafür werden dir ein paar Fragen gestellt.
 {Orange('___________________________________________________________________________')}    
     
-    {Blue('1) Starte Konfigurations-Assistent')}
+    {Blue('1) Start')}
     {Blue('0) Beenden')}
     
 {Orange('Wähle eine Option')}""")
@@ -116,7 +113,7 @@ def start():
         print("Benutzername existiert bereits")
         exit(0)
     createUser(username)
-    print(Orange('Der neue Account ' + username +' wurde erstellt!\n\nKonfiguration abgeschlossen!\n\nHallo '+username+'!\nWillkommen bei SAM!'))
+    print(Orange('Der neue Account ' + username +' wurde erstellt!\n\nKonfiguration abgeschlossen!\n\n Willkommen bei SAM!'))
     print(Orange('\n\n________________________________________________________________'))
 
 
@@ -150,8 +147,6 @@ def createUser(username):
     userIDs = []
     oldData = None
     maxID = int
-    now = datetime.now()
-    registertime = now.strftime("%m/%d/%Y %H:%M:%S")
     with open('./save/user.json','r') as datafile:
         oldData = json.load(datafile)
         for i in oldData:
@@ -163,7 +158,7 @@ def createUser(username):
         datafile.close()
            
     with open('./save/user.json','w') as newData:
-        newUser = {str(maxID+1):{"username":username,"userid":str(maxID + 1),"registerDate":str(registertime)}}
+        newUser = {str(maxID+1):{"username":username,"userid":str(maxID + 1)}}
         newUser.update(oldData)
         json.dump(newUser,newData)
         datafile.close()        
