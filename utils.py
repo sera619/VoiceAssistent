@@ -1,6 +1,8 @@
+from atexit import register
 import os
 from time import time, sleep
 from termcolor import *
+from datetime import *
 import json
 
 class BColors:
@@ -51,11 +53,12 @@ COPYRIGHT = (rf"""
 
 INITMENU =(rf"""
            
-            SAM hat festgestellt das du noch keine Konfiguration hast.
-                Dafür werden dir ein paar Fragen gestellt.
+        SAM hat festgestellt das du noch keine Konfiguration 
+          durchgeführt hast. Starte bitte den Assistenten.
+
 {Orange('___________________________________________________________________________')}    
     
-    {Blue('1) Start')}
+    {Blue('1) Starte Konfigurations-Assistent')}
     {Blue('0) Beenden')}
     
 {Orange('Wähle eine Option')}""")
@@ -147,6 +150,8 @@ def createUser(username):
     userIDs = []
     oldData = None
     maxID = int
+    now = datetime.now()
+    registertime = now.strftime("%m/%d/%Y %H:%M:%S")
     with open('./save/user.json','r') as datafile:
         oldData = json.load(datafile)
         for i in oldData:
@@ -158,7 +163,7 @@ def createUser(username):
         datafile.close()
            
     with open('./save/user.json','w') as newData:
-        newUser = {str(maxID+1):{"username":username,"userid":str(maxID + 1)}}
+        newUser = {str(maxID+1):{"username":username,"userid":str(maxID + 1),"registerDate":str(registertime)}}
         newUser.update(oldData)
         json.dump(newUser,newData)
         datafile.close()        
