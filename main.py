@@ -2,9 +2,11 @@ from neuralintents import GenericAssistant
 import speech_recognition
 import pyttsx3 as tts
 import sys
+from os import path, mkdir
+from utils import Blue, Red, Green, BColors, Orange
 
 
-
+todo_list = ['Go Shopping', 'Clean Room', 'Record Video']
 
 
 
@@ -12,8 +14,18 @@ import sys
 recogniser = speech_recognition.Recognizer()
 speaker = tts.init()
 speaker.setProperty('rate',160)
+savepath =""
 
-todo_list = ['Go Shopping', 'Clean Room', 'Record Video']
+
+
+
+def saveNotes():
+    if not savepath == "":
+        if not path.exists(savepath):
+            mkdir(savepath)
+    else:
+        print(Red("ERROR: Please configure the savepath!"))
+
 
 
 def createNewNote():
@@ -85,20 +97,35 @@ def addNewTodo():
             speaker.runAndWait()
             
             
-def show_todos():
+def showTodos():
     speaker.say("The items on your to do list are:")
     for item in todo_list:
         speaker.say(item)
     speaker.runAndWait()
     
+def showNotes():
+    print('Show notes active')
+    pass
     
 def hello():
     speaker.say("Hello! What can I do for you?")
     speaker.runAndWait()
     
 def quit():
-    pass
-    
+    speaker.say("Bye!")
+    speaker.runAndWait()
+    sys.exit(0)    
+
+
+
+mapping = {
+    "greetings": hello,
+    "create_note": createNewNote,
+    "show_notes": showNotes,
+    "create_todo": addNewTodo,
+    "show_todos": showTodos,
+    "exit": quit
+}
             
         
 '''assistant = GenericAssistant('intents.json')
