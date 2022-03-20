@@ -42,7 +42,7 @@ BANNER = (rf"""
 (______/      |_|_|   |_|  |_|   |_(______/(______/(_____|______/   |_|   
 """)
 COPYRIGHT = (rf"""
-                           PRE-Alpha v0.2
+                           Dev-Alpha v0.4
                       copyright 2022 © S3R43o3              
              
     Willkommen, 'SAM' ist ein virtueller Sprachassistent für deinen
@@ -51,11 +51,11 @@ COPYRIGHT = (rf"""
 
 INITMENU =(rf"""
            
-            SAM hat festgestellt das du noch keine Konfiguration hast.
-                Dafür werden dir ein paar Fragen gestellt.
+        SAM hat festgestellt das du noch keine Konfiguration hast.
+                Starte bitte den Konfigurations-Assistent. 
 {Orange('___________________________________________________________________________')}    
     
-    {Blue('1) Start')}
+    {Blue('1) Starte Konfigurations-Assistent')}
     {Blue('0) Beenden')}
     
 {Orange('Wähle eine Option')}""")
@@ -72,25 +72,23 @@ def FirstMenu():
             print(BANNERTOP+Blue(INITMENU))
             selected = int(input(Green("\n>>>> "))) 
             if selected == None:
-                print(colored("ERROR\nDie letzte Eingabe war ungültig!\nBitte versuche es noch einmal.\n\nKehre zum Hauptmenü zurück ...",'white','on_red'))
+                print(colored("\n\nERROR\nDie letzte Eingabe war ungültig!\nBitte versuche es noch einmal.\n\nKehre zum Hauptmenü zurück ...",'white','on_red'))
                 sleep(4)
                 selected = None
                 FirstMenu()
             elif selected == 1:
                 start()
             elif selected == 0:
-                print(Red('\n\nSAM wurde vom Nutzer beendet.'))
+                print(Red('\n\nSAM wurde vom Nutzer beendet.\n\n'))
                 exit(0)
             else:
                 print(colored("ERROR\nDie letzte Eingabe war ungültig!\nBitte versuche es noch einmal.\n\nKehre zum Hauptmenü zurück ...",'white','on_red'))
-                sleep(4)
+                sleep(3)
                 selected = None
                 FirstMenu()
         except KeyboardInterrupt:
             CLEARWIN
-            print(Red('SAM wurde vom Nutzer beendet.'))
-            print("")
-            print("")
+            print(Red('\n\nSAM wurde vom Nutzer beendet.\n\n'))
             quit(0)
 
 
@@ -103,45 +101,37 @@ def start():
     print(Orange("\nSAM - Konfigurationsassisten wird initialisiert ..."))
     print(Orange('\n___________________________________________________________________________'))
     sleep(2)
-    print(Blue("\n\nBitte wähle einen Benutzername: "))
+    print(Blue("\n\nGebe '0' ein zum beenden!\nBitte wähle einen Benutzername: "))
     username = input(Green("\n>>>> "))
-    if username == "" or username == None:
+    if username == "":
         CLEARWIN
         print(Red("Kein Benutzername gefunden!\nBeende SAM ..."))
         quit(0)
-    if userExist(username):
-        print("Benutzername existiert bereits")
-        exit(0)
-    createUser(username)
-    print(Orange('Der neue Account ' + username +' wurde erstellt!\n\nKonfiguration abgeschlossen!\n\n Willkommen bei SAM!'))
-    print(Orange('\n\n________________________________________________________________'))
-
-
-
-
+    elif username =="0":
+        print(Red('\n\nSAM wurde vom Nutzer beendet!\n'))
+        quit(0)
+    userExist(username)
 
 def userExist(username):
+    usernames =[]
     with open('./save/user.json','r') as file:
         data = json.load(file)
         json_str = json.dumps(data)
         resp = json.loads(json_str)
         #print(resp.get('1')['username'])
-        usernames =[]
         for i in resp:
             # all usernames
             usernames.append(resp[i]['username'])
-            print(usernames)
-            # all user
-            # ID´s
-        file.close()
-        if username in usernames:
-            print("User existiert bereits")
-            return False
-        else:
-            print("Username available!")
-            return True
-        
-
+            #print(usernames)
+            # all user ID
+            
+    if username in usernames:
+        print(Red("\nUser existiert bereits!\nNeustart..."))
+        sleep(1.5)
+        start()
+    else:
+        print("Username available!")
+        createUser(username)
 
 def createUser(username):
     userIDs = []
@@ -152,9 +142,9 @@ def createUser(username):
         for i in oldData:
             userIDs.append(int(i))
         
-        print(userIDs)
+        #print(userIDs)
         maxID = max(userIDs)
-        print(maxID)
+        #print(maxID)
         datafile.close()
            
     with open('./save/user.json','w') as newData:
@@ -162,7 +152,10 @@ def createUser(username):
         newUser.update(oldData)
         json.dump(newUser,newData)
         datafile.close()        
-            
+    print(Orange('Der neue Account ') +Blue(username) + Orange(' wurde erstellt!\n\nKonfiguration abgeschlossen!'))
+    print(BANNERTOP)
+    print(Orange('Hallo, ')+Red(username)+ Orange('!\nWillkommen bei SAM!\nEs geht bald weiter!\n\n'))
+    exit(0)
         
     
 
