@@ -46,13 +46,16 @@ COPYRIGHT = (rf"""
                       copyright 2022 © S3R43o3              
              
     Willkommen, 'SAM' ist ein virtueller Sprachassistent für deinen
-              PC! Sage 'Hallo' um mit SAM zu sprechen!
+                PC! Sage 'Hallo' um mit SAM zu sprechen!
 """)
 
 INITMENU =(rf"""
+{Orange('___________________________________________________________________________')}
+    
+                           {Red('>>>>ACHTUNG<<<<')}
            
-        SAM hat festgestellt das du noch keine Konfiguration hast.
-                Starte bitte den Konfigurations-Assistent. 
+       {Green('SAM hat festgestellt das du noch keine Konfiguration hast.')}
+               {Green('Starte bitte den Konfigurations-Assistent.')} 
 {Orange('___________________________________________________________________________')}    
     
     {Blue('1) Starte Konfigurations-Assistent')}
