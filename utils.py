@@ -116,7 +116,7 @@ def start():
         print("Benutzername existiert bereits")
         exit(0)
     createUser(username)
-    print(Orange('Der neue Account ' + username +' wurde erstellt!\n\nKonfiguration abgeschlossen!\n\n Willkommen bei SAM!'))
+    print(Orange('Der neue Account ' + username +' wurde erstellt!\n\nKonfiguration abgeschlossen!\n\nHallo '+username+'!\nWillkommen bei SAM!'))
     print(Orange('\n\n________________________________________________________________'))
 
 
