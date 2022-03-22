@@ -33,7 +33,7 @@ You can use and edit like you want!
 >   - "Hey", "Hello", "What's up?", "How is it going?", "Hi", "Good day"
 >
 > - New Note:
->   - "Please create a new to do", "New to do", "Create a to do", "I want to create a to do,
+>   - "Please create a new to do", "New to do", "Create a to do", "I want to create a to do"
 >
 > - Show Notes:
 >   - "Please show my notes", "Show notes"
