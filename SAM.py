@@ -3,7 +3,7 @@ import speech_recognition
 import pyttsx3 as tts
 import sys
 from os import path, mkdir
-from utils import Blue, Red, Green, BColors, Orange
+from src.utils import Blue, Red, Green, BColors, Orange
 
 
 todo_list = ['Go Shopping', 'Clean Room', 'Record Video']
@@ -128,9 +128,23 @@ mapping = {
 }
             
         
-'''assistant = GenericAssistant('intents.json')
+assistant = GenericAssistant('intents.json', intent_methods=mapping)
 assistant.train_model()
-'''
 
 
-
+while True:
+    
+    try:
+        
+        with speech_recognition.Microphone() as mic:
+            recogniser.adjust_for_ambient_noise(mic, duration= 0.2)
+            audio = recogniser.listen(mic)
+            
+            message = recogniser.recognize_google(audio)
+            message = message.lower()
+        
+        assistant.request(message)
+    except speech_recognition.UnknownValueError:
+        
+        recogniser = speech_recognition.Recognizer()
+            
