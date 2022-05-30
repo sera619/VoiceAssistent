@@ -1,5 +1,9 @@
 # Prototype 'SAM' Voiceassistant #
 
+---
+# I ALREADY WORK ON A HUGE UPDATE. CHECK IT OUT [S4M 2.0](https://github.com/sera619/S4M-2.0)
+---
+
 SAM is a prototype of a virtual desktop ai-assistant.
 This software support Windows 10 / 11 only (No Mac, No Linux)
 You can use and edit like you want!
