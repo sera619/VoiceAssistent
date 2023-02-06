@@ -24,7 +24,7 @@ Markdown==3.3.6
 neuralintents==0.0.4
 nltk==3.7
 numpy==1.22.3
-oauthlib==3.2.1
+oauthlib==3.2.2
 opt-einsum==3.3.0
 packaging==21.3
 protobuf==3.19.5
