@@ -52,6 +52,6 @@ tf-estimator-nightly==2.8.0.dev2021122109
 tqdm==4.63.0
 typing_extensions==4.1.1
 urllib3==1.26.18
-Werkzeug==2.2.3
+Werkzeug==3.0.1
 wrapt==1.14.0
 zipp==3.7.0
